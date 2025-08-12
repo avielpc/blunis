@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blunis — תן לנו לחשב את העסק שלך</title>
+  <meta name="description" content="Blunis — בוט חכם לניהול כספים לעסקים: מעקב הכנסות/הוצאות, תזכורות חכמות, דוחות ותחזיות.">
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImYiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzRjYWZlZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3ZWQ5NTciLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHg9IjQiIHk9IjQiIHdpZHRoPSI1NiIgaGVpZ2h0PSI1NiIgcng9IjEyIiBmaWxsPSJ1cmwoI2YpIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1NCUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZmZmZmZmIj5CPC90ZXh0Pgo8L3N2Zz4=">
+  <meta property="og:title" content="Blunis — תן לנו לחשב את העסק שלך" />
+  <meta property="og:description" content="בוט חכם לניהול כספים לעסק שלך. שליטה מלאה, המלצות אוטומטיות ודוחות בזמן אמת." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzIiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlZjdmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZWZkZjEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZzIpIi8+CiAgPHJlY3QgeD0iNjAiIHk9IjEyMCIgd2lkdGg9Ijc4MCIgaGVpZ2h0PSIzNjAiIHJ4PSIxMiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZTVlN2ViIi8+CiAgPHRleHQgeD0iNzgiIHk9IjE2MCIgZm9udC1zaXplPSIyMiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmaWxsPSIjMzMzIj7Xk9ep15HXldeo15Mg16jXldeV15fXmdeV16og15fXldeT16nXmdeqPC90ZXh0PgogIDxyZWN0IHg9IjkwIiB5PSIxOTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iNjAiIHJ4PSI4IiBmaWxsPSIjZjVmNWY1Ii8+CiAgPHRleHQgeD0iMTAwIiB5PSIyMjgiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZmlsbD0iIzMzMyI+16jXldeV15cg16DXmNeVOiDigqogMjcsNDUwPC90ZXh0PgogIDxyZWN0IHg9IjkwIiB5PSIyNzAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwIiByeD0iOCIgZmlsbD0iI2Y1ZjVmNSIvPgogIDx0ZXh0IHg9IjEwMCIgeT0iMzAwIiBmb250LXNpemU9IjE2IiBmb250LWZhbWlseT0iQXJpYWwiIGZpbGw9IiMzMzMiPteU157XnNem15XXqiDXnNep15nXpNeV16g6PC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iMzMwIiBmb250LXNpemU9IjE1IiBmb250LWZhbWlseT0iQXJpYWwiIGZpbGw9IiMzMzMiPuKAoiDXptee16bXldedINeU15XXpteQ15XXqiDXpNeo16HXldedINec15Ag15DXpNen15jXmdeR15nXldeqPC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iMzU1IiBmb250LXNpemU9IjE1IiBmb250LWZhbWlseT0iQXJpYWwiIGZpbGw9IiMzMzMiPuKAoiDXkNeV15jXldee16bXmdeUINec15LXkdeZ15nXqiDXqtep15zXldee15nXnSDXkdeQ15nXl9eV16g8L3RleHQ+CiAgPHRleHQgeD0iMTEwIiB5PSIzODAiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZmlsbD0iIzMzMyI+4oCiINee16LXp9eRINeQ15fXqCDXpNeo15XXmden15jXmdedINei150g157XqNeV15XXlyDXoNee15XXmjwvdGV4dD4KPC9zdmc+" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="topnav">
+    <div class="brand">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNGNhZmVmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdlZDk1NyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIHJ4PSI0OCIgZmlsbD0idXJsKCNnKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTQlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0MCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiI+QjwvdGV4dD4KPC9zdmc+" alt="Blunis" />
+      <span>Blunis</span>
+    </div>
+    <div class="links">
+      <a href="#about">אודות</a>
+      <a href="#services">שירותים</a>
+      <a href="#portfolio">עבודות</a>
+      <a href="#contact">צור קשר</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <img class="logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNGNhZmVmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdlZDk1NyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIHJ4PSI0OCIgZmlsbD0idXJsKCNnKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTQlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0MCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiI+QjwvdGV4dD4KPC9zdmc+" alt="לוגו Blunis" />
+      <h1 class="animate-fade">Blunis</h1>
+      <p class="tagline animate-fade">תן לנו לחשב את העסק שלך</p>
+      <p class="sub animate-fade">
+        הבוט החכם לניהול כספים: נראות מלאה על ההכנסות וההוצאות, התראות חכמות, ודוחות שמדברים בשפה של העסק שלך.
+      </p>
+      <a href="#contact" class="cta-btn animate-bounce">מתחילים עכשיו</a>
+    </div>
+  </header>
+
+  <!-- VALUE -->
+  <section class="section value fade-in" id="value">
+    <h2>למה Blunis?</h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <h3>בקרת מזומנים בזמן אמת</h3>
+        <p>תמונה עדכנית של תזרים המזומנים – בכל רגע.</p>
+      </div>
+      <div class="value-card">
+        <h3>תובנות שמגדילות רווח</h3>
+        <p>המלצות חכמות על בסיס נתונים אמיתיים, לא תחושות בטן.</p>
+      </div>
+      <div class="value-card">
+        <h3>עובד בשבילך 24/7</h3>
+        <p>התראות אוטומטיות לגבייה, תשלומים, ומועדים חשובים.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section fade-in" id="about">
+    <h2>אודות</h2>
+    <p>
+      Blunis הוא הבוט החכם לניהול הכספים של העסק שלך. נבנה כדי לעזור לעסקים לצמוח דרך שליטה אמיתית במספרים:
+      מעקב הכנסות/הוצאות, תחזיות תזרים, ודוחות ברורים שמובילים להחלטות נכונות.
+    </p>
+    <p><strong>אביאל שרגא</strong> — לפרטים והצטרפות שלחו וואצפ <strong>052-2780677</strong>.</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section fade-in" id="services">
+    <h2>מה אנחנו מציעים</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="icon">📊</span>
+        <h3>מעקב בזמן אמת</h3>
+        <p>חיבור פשוט למקורות נתונים וקבלת תמונת מצב מיידית.</p>
+      </div>
+      <div class="service-card">
+        <span class="icon">📅</span>
+        <h3>תזכורות חכמות</h3>
+        <p>מנגנון התראות אוטומטי לחשבוניות, חיובים ותשלומים.</p>
+      </div>
+      <div class="service-card">
+        <span class="icon">💡</span>
+        <h3>המלצות מותאמות</h3>
+        <p>הצעות לשיפור רווחיות על סמך דפוסי פעילות עסקית.</p>
+      </div>
+      <div class="service-card">
+        <span class="icon">📈</span>
+        <h3>דוחות אינטראקטיביים</h3>
+        <p>גרפים, פילוחים והשוואות — קליקים ספורים לתובנות.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="section fade-in" id="portfolio">
+    <h2>עבודות ותצוגה</h2>
+    <div class="portfolio-grid">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YwZmJmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmM2ZmZjIiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYmcpIi8+CiAgPHRleHQgeD0iNTAlIiB5PSIxMiUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZmlsbD0iIzMzMyI+157Xoten15Eg15TXm9eg16HXldeqL9eU15XXpteQ15XXqjwvdGV4dD4KICA8cmVjdCB4PSIxMjAiIHk9IjQ4MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNGNhZmVmIi8+CiAgPHJlY3QgeD0iMjYwIiB5PSI0MjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIxNDAiIGZpbGw9IiM0Y2FmZWYiLz4KICA8cmVjdCB4PSI0MDAiIHk9IjM2MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzRjYWZlZiIvPgogIDxyZWN0IHg9IjU0MCIgeT0iMzAwIiB3aWR0aD0iODAiIGhlaWdodD0iMjYwIiBmaWxsPSIjNGNhZmVmIi8+CiAgPHJlY3QgeD0iNjgwIiB5PSIyMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzNDAiIGZpbGw9IiM0Y2FmZWYiLz4KICA8bGluZSB4MT0iOTAiIHkxPSI1MjAiIHgyPSI4MTAiIHkyPSI1MjAiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPGxpbmUgeDE9IjkwIiB5MT0iNTIwIiB4Mj0iOTAiIHkyPSIxNDAiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPg==" alt="גרף עמודות">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmZWY3Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSIxMiUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZmlsbD0iIzMzMyI+16rXl9eW15nXqiDXqteW16jXmdedPC90ZXh0PgogIDxwb2x5bGluZSBmaWxsPSJub25lIiBzdHJva2U9IiM3ZWQ5NTciIHN0cm9rZS13aWR0aD0iNiIKICAgICAgICAgICAgcG9pbnRzPSI2MCw0ODAgMTgwLDQyMCAzMDAsNDQwIDQyMCwzNjAgNTQwLDMwMCA2NjAsMzIwIDc4MCwyNDAiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjQ4MCIgcj0iNiIgZmlsbD0iIzdlZDk1NyIvPgogIDxjaXJjbGUgY3g9IjE4MCIgY3k9IjQyMCIgcj0iNiIgZmlsbD0iIzdlZDk1NyIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjQ0MCIgcj0iNiIgZmlsbD0iIzdlZDk1NyIvPgogIDxjaXJjbGUgY3g9IjQyMCIgY3k9IjM2MCIgcj0iNiIgZmlsbD0iIzdlZDk1NyIvPgogIDxjaXJjbGUgY3g9IjU0MCIgY3k9IjMwMCIgcj0iNiIgZmlsbD0iIzdlZDk1NyIvPgogIDxjaXJjbGUgY3g9IjY2MCIgY3k9IjMyMCIgcj0iNiIgZmlsbD0iIzdlZDk1NyIvPgogIDxjaXJjbGUgY3g9Ijc4MCIgY3k9IjI0MCIgcj0iNiIgZmlsbD0iIzdlZDk1NyIvPgogIDxsaW5lIHgxPSI2MCIgeTE9IjUyMCIgeDI9IjgyMCIgeTI9IjUyMCIgc3Ryb2tlPSIjY2NjIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8bGluZSB4MT0iNjAiIHkxPSI1MjAiIHgyPSI2MCIgeTI9IjEyMCIgc3Ryb2tlPSIjY2NjIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+" alt="גרף קו תחזית">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzIiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlZjdmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZWZkZjEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZzIpIi8+CiAgPHJlY3QgeD0iNjAiIHk9IjEyMCIgd2lkdGg9Ijc4MCIgaGVpZ2h0PSIzNjAiIHJ4PSIxMiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZTVlN2ViIi8+CiAgPHRleHQgeD0iNzgiIHk9IjE2MCIgZm9udC1zaXplPSIyMiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmaWxsPSIjMzMzIj7Xk9ep15HXldeo15Mg16jXldeV15fXmdeV16og15fXldeT16nXmdeqPC90ZXh0PgogIDxyZWN0IHg9IjkwIiB5PSIxOTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iNjAiIHJ4PSI4IiBmaWxsPSIjZjVmNWY1Ii8+CiAgPHRleHQgeD0iMTAwIiB5PSIyMjgiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZmlsbD0iIzMzMyI+16jXldeV15cg16DXmNeVOiDigqogMjcsNDUwPC90ZXh0PgogIDxyZWN0IHg9IjkwIiB5PSIyNzAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwIiByeD0iOCIgZmlsbD0iI2Y1ZjVmNSIvPgogIDx0ZXh0IHg9IjEwMCIgeT0iMzAwIiBmb250LXNpemU9IjE2IiBmb250LWZhbWlseT0iQXJpYWwiIGZpbGw9IiMzMzMiPteU157XnNem15XXqiDXnNep15nXpNeV16g6PC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iMzMwIiBmb250LXNpemU9IjE1IiBmb250LWZhbWlseT0iQXJpYWwiIGZpbGw9IiMzMzMiPuKAoiDXptee16bXldedINeU15XXpteQ15XXqiDXpNeo16HXldedINec15Ag15DXpNen15jXmdeR15nXldeqPC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iMzU1IiBmb250LXNpemU9IjE1IiBmb250LWZhbWlseT0iQXJpYWwiIGZpbGw9IiMzMzMiPuKAoiDXkNeV15jXldee16bXmdeUINec15LXkdeZ15nXqiDXqtep15zXldee15nXnSDXkdeQ15nXl9eV16g8L3RleHQ+CiAgPHRleHQgeD0iMTEwIiB5PSIzODAiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZmlsbD0iIzMzMyI+4oCiINee16LXp9eRINeQ15fXqCDXpNeo15XXmden15jXmdedINei150g157XqNeV15XXlyDXoNee15XXmjwvdGV4dD4KPC9zdmc+" alt="דשבורד רווחיות">
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip fade-in">
+    <h3>המספרים בעסק שלך — סוף סוף ברורים.</h3>
+    <a href="#contact" class="cta-btn alt">דברו איתנו</a>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section fade-in" id="faq">
+    <h2>שאלות נפוצות</h2>
+    <details>
+      <summary>איך מתחילים?</summary>
+      <p>פשוט משאירים פרטים בטופס למטה או שולחים WhatsApp, ואנחנו נחזור אליך לתיאום קצר.</p>
+    </details>
+    <details>
+      <summary>כמה זמן לוקח להטמיע?</summary>
+      <p>ברוב המקרים, תוך יום עסקים אפשר להתחיל לעבוד עם Blunis.</p>
+    </details>
+    <details>
+      <summary>זה מתאים לכל עסק?</summary>
+      <p>כן — במיוחד לעסקים קטנים ובינוניים שרוצים לקבל החלטות מבוססות נתונים.</p>
+    </details>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section fade-in" id="contact">
+    <h2>צור קשר</h2>
+    <form id="contactForm" class="contact-form">
+      <div class="row">
+        <input id="name" type="text" placeholder="שם מלא" required />
+        <input id="phone" type="tel" placeholder="טלפון" required />
+      </div>
+      <input id="email" type="email" placeholder="אימייל (לא חובה)" />
+      <textarea id="message" placeholder="איך נוכל לעזור?" required></textarea>
+      <button type="submit">שליחה</button>
+      <p class="note">שליחה תפתח הודעה מוכנה ב־WhatsApp או במייל — לפי מה שתבחר/י.</p>
+    </form>
+
+    <div class="contact-buttons">
+      <button onclick="openWhatsApp()">WhatsApp</button>
+      <button onclick="callPhone()">טלפון</button>
+      <button onclick="sendEmail()">אימייל</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Blunis — כל הזכויות שמורות</p>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="חזור לראש הדף">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
