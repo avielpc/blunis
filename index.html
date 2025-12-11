@@ -171,6 +171,11 @@
       box-shadow: var(--shadow);
       background: var(--card);
     }
+     .video-wrapper.shorts {
+      padding-bottom: 177.78%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
     .video-wrapper iframe {
       position: absolute;
       top: 0;
@@ -592,12 +597,20 @@
         const detailedVideo = data.videos.find(v => v.id === 'detailed');
         
         if (introVideo && introVideo.youtubeId) {
-          document.getElementById('introVideoWrapper').innerHTML = 
+         const wrapper = document.getElementById('introVideoWrapper');
+          if (introVideo.isShorts) {
+            wrapper.classList.add('shorts');
+          }
+          wrapper.innerHTML = 
             `<iframe src="https://www.youtube.com/embed/${introVideo.youtubeId}" allowfullscreen></iframe>`;
         }
         
         if (detailedVideo && detailedVideo.youtubeId) {
-          document.getElementById('detailedVideoWrapper').innerHTML = 
+          const wrapper = document.getElementById('detailedVideoWrapper');
+          if (detailedVideo.isShorts) {
+            wrapper.classList.add('shorts');
+          }
+          wrapper.innerHTML = 
             `<iframe src="https://www.youtube.com/embed/${detailedVideo.youtubeId}" allowfullscreen></iframe>`;
         }
       })
