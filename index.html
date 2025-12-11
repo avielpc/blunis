@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BLUNIS - בוט חשבוניות חכם</title>
+  <meta name="description" content="BLUNIS - בוט חכם לניהול חשבוניות, דוחות וחשבונאות. עבודה עם קארדקום, SUMIT, חשבונית ירוקה ו-invoice4u" />
+  <link rel="icon" type="image/x-icon" href="logo/logo.ico" />
+  <link rel="icon" type="image/png" href="logo/logo.png" />
+  <link rel="apple-touch-icon" href="logo/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       Design System
+       ========================= */
+    :root {
+      --bg: #0f1220;
+      --surface: #151933;
+      --surface-2: #1b2040;
+      --text: #e9ebff;
+      --muted: #bac2ff;
+      --brand: #6c8cff;
+      --brand-2: #86e3ff;
+      --accent: #a78bfa;
+      --card: #0f1329;
+      --ok: #22c55e;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    :root.light {
+      --bg: #f6f8ff;
+      --surface: #ffffff;
+      --surface-2: #eef2ff;
+      --text: #101225;
+      --muted: #3c4270;
+      --brand: #3b5bff;
+      --brand-2: #06b6d4;
+      --accent: #6d28d9;
+      --card: #ffffff;
+      --shadow: 0 10px 25px rgba(23,35,80,.12);
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      font-family: "Heebo", system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans Hebrew", sans-serif;
+      background:
+        radial-gradient(1200px 800px at 80% -10%, color-mix(in oklab, var(--brand-2) 10%, transparent), transparent 60%),
+        radial-gradient(900px 600px at -10% 20%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      scroll-behavior: smooth;
+    }
+
+    a { color: inherit; text-decoration: none }
+    img { max-width: 100%; display: block; border-radius: var(--radius) }
+    .container { width: min(1200px, 92vw); margin: 0 auto }
+
+    /* ===== Header ===== */
+    header.navbar {
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--surface) 92%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0 }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; letter-spacing: .3px }
+    .brand-logo {
+      width: 40px; height: 40px; border-radius: 10px;
+      object-fit: contain; display: block; box-shadow: var(--shadow);
+    }
+
+    .nav-menu {
+      display: flex; align-items: center; gap: 8px; flex: 1; justify-content: center;
+    }
+    .nav-link {
+      padding: 10px 18px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+      color: var(--text); transition: all .2s ease; white-space: nowrap;
+      border: 1px solid transparent;
+    }
+    .nav-link:hover {
+      background: color-mix(in oklab, var(--surface-2) 80%, transparent);
+      color: var(--brand);
+      transform: translateY(-1px);
+    }
+    .nav-link.active {
+      background: color-mix(in oklab, var(--brand) 15%, transparent);
+      color: var(--brand);
+      border-color: color-mix(in oklab, var(--brand) 30%, transparent);
+    }
+
+    .accessibility-link {
+      padding: 8px 14px; border-radius: 8px; font-weight: 500; font-size: 0.85rem;
+      color: var(--muted); transition: all .2s ease;
+      border: 1px solid color-mix(in oklab, var(--text) 8%, transparent);
+    }
+    .accessibility-link:hover {
+      background: color-mix(in oklab, var(--surface-2) 80%, transparent);
+      color: var(--text);
+    }
+
+    .actions { display: flex; align-items: center; gap: 10px }
+    .menu-toggle {
+      display: none;
+      width: 42px; height: 42px; border-radius: 12px; cursor: pointer;
+      border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      background: var(--surface); align-items: center; justify-content: center;
+      flex-direction: column; gap: 5px;
+    }
+    .menu-toggle span {
+      width: 20px; height: 2px; background: var(--text); border-radius: 2px;
+      transition: all .3s ease;
+    }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    .btn, button.btn {
+      padding: 12px 24px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      background: linear-gradient(180deg, color-mix(in oklab, var(--surface) 85%, transparent), var(--surface-2));
+      color: var(--text); font-weight: 700; box-shadow: var(--shadow);
+      transition: transform .12s ease, box-shadow .12s ease; cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn:hover { transform: translateY(-1px) }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--accent)); border: none; color: #fff }
+
+    .icon-btn {
+      display: grid; place-items: center;
+      width: 42px; height: 42px; border-radius: 12px; cursor: pointer;
+      border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      background: var(--surface);
+    }
+
+    /* ===== Hero ===== */
+    .hero { padding: 90px 0 70px; text-align: center }
+    .title-xl { font-size: clamp(28px, 5vw, 54px); line-height: 1.1; font-weight: 800; margin: 0 0 14px }
+    .lead { color: var(--muted); font-size: clamp(16px, 2.2vw, 20px); margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: center; margin-top: 32px }
+
+    /* ===== Sections ===== */
+    section { padding: 80px 0 }
+    .section-title { font-size: clamp(22px, 4vw, 36px); font-weight: 800; text-align: center; margin: 0 0 10px }
+    .section-sub { text-align: center; color: var(--muted); margin-bottom: 48px; font-size: 1.1rem }
+
+    .card {
+      background: linear-gradient(180deg, color-mix(in oklab,var(--card) 90%, transparent), var(--surface-2));
+      border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+      border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow);
+      margin-bottom: 40px;
+    }
+
+    /* ===== Video Section ===== */
+    .video-section {
+      margin-bottom: 50px;
+    }
+    .video-title {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--brand);
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--card);
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ===== Info Section ===== */
+    .info-subsection {
+      margin-bottom: 50px;
+    }
+    .info-subtitle {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--brand);
+    }
+    .info-text {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+    }
+    .functions-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    .functions-list li {
+      padding: 12px 0;
+      padding-right: 30px;
+      position: relative;
+      color: var(--text);
+      font-size: 1.05rem;
+    }
+    .functions-list li:before {
+      content: "✓";
+      position: absolute;
+      right: 0;
+      color: var(--ok);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    .companies-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    .companies-list li {
+      padding: 8px 0;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .companies-list li:before {
+      content: "•";
+      margin-left: 10px;
+      color: var(--brand);
+      font-size: 1.5rem;
+    }
+
+    /* ===== Contact Section ===== */
+    .contact-card {
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      border-radius: var(--radius);
+      padding: 50px 30px;
+      text-align: center;
+      color: #fff;
+      margin: 60px 0;
+    }
+    .contact-card h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      margin-bottom: 24px;
+      color: #fff;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      margin-top: 24px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+    }
+    .contact-item a {
+      color: #fff;
+      text-decoration: underline;
+      transition: opacity .2s ease;
+    }
+    .contact-item a:hover {
+      opacity: 0.8;
+    }
+
+    /* ===== Accessibility Modal ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: color-mix(in oklab, #000 60%, transparent);
+      backdrop-filter: blur(4px);
+    }
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid color-mix(in oklab, var(--text) 20%, transparent);
+      background: var(--surface-2);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all .2s ease;
+    }
+    .modal-close:hover {
+      background: var(--brand);
+      color: #fff;
+    }
+    .modal-content h2 {
+      font-size: clamp(22px, 3vw, 28px);
+      margin-bottom: 24px;
+      color: var(--brand);
+    }
+    .modal-content h3 {
+      font-size: clamp(18px, 2.5vw, 22px);
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .modal-content p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* ===== Animations ===== */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: .6s ease;
+    }
+    [data-animate].in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 960px) {
+      .nav-menu {
+        position: fixed; top: 70px; right: 0; left: 0;
+        background: var(--surface); border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+        flex-direction: column; padding: 20px; gap: 8px; box-shadow: var(--shadow);
+        transform: translateY(-100%); opacity: 0; pointer-events: none;
+        transition: all .3s ease; z-index: 30;
+      }
+      .nav-menu.active {
+        transform: translateY(0); opacity: 1; pointer-events: all;
+      }
+      .nav-link {
+        width: 100%; text-align: center; padding: 14px 18px;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      .accessibility-link {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="brand">
+        <img src="logo/logo.png" alt="BLUNIS Logo" class="brand-logo" />
+        BLUNIS
+      </div>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#how-it-works" class="nav-link">איך זה עובד?</a>
+        <a href="#info" class="nav-link">מידע</a>
+        <a href="pricing.html" class="nav-link">מחירון</a>
+        <a href="join.html" class="nav-link">איך מצטרפים</a>
+        <a href="reviews.html" class="nav-link">לקוחות ממליצים</a>
+        <a href="#contact" class="nav-link">צור קשר</a>
+        <a href="jobs.html" class="nav-link">דרושים</a>
+        <a href="#" class="accessibility-link" id="accessibilityLink">הצהרת נגישות</a>
+      </nav>
+      <div class="actions">
+        <button id="menuToggle" class="menu-toggle" aria-label="תפריט">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <button id="themeToggle" class="icon-btn" aria-label="החלפת מצב בהיר/כהה">🌓</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="home">
+    <div class="container">
+      <h1 class="title-xl" data-animate>BLUNIS - בוט חשבוניות חכם</h1>
+      <p class="lead" data-animate>
+        בוט חכם לניהול חשבוניות, דוחות וחשבונאות. עבודה פשוטה ונוחה עם כל חברות החשבוניות המובילות.
+      </p>
+      <div class="cta-row" data-animate>
+        <a href="join.html" class="btn primary">הצטרף עכשיו</a>
+        <a href="https://wa.me/972522780677" target="_blank" class="btn primary">התחל להשתמש בבוט</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How It Works ===== -->
+  <section class="container" id="how-it-works">
+    <h2 class="section-title" data-animate>איך זה עובד?</h2>
+    <p class="section-sub" data-animate>למד איך להשתמש בבוט שלנו בקלות ובמהירות</p>
+
+    <div class="card" data-animate>
+      <div class="video-section">
+        <h3 class="video-title" id="introVideoTitle">הכר את המערכת</h3>
+        <div class="video-wrapper" id="introVideoWrapper">
+          <p style="text-align: center; padding: 40px; color: var(--muted);">טוען סרטון...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-animate>
+      <div class="video-section">
+        <h3 class="video-title" id="detailedVideoTitle">הסבר מפורט</h3>
+        <div class="video-wrapper" id="detailedVideoWrapper">
+          <p style="text-align: center; padding: 40px; color: var(--muted);">טוען סרטון...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-animate>
+      <div class="video-section">
+        <h3 class="video-title">דוגמאות שימוש</h3>
+        <p style="color: var(--muted); margin-bottom: 24px; font-size: 1.05rem;">
+          צפה בדוגמאות מפורטות לשימוש בבוט עם תמונות והסברים מפורטים
+        </p>
+        <a href="examples.html" class="btn primary">צפה בדוגמאות</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Info Section ===== -->
+  <section class="container" id="info">
+    <h2 class="section-title" data-animate>מידע</h2>
+    <p class="section-sub" data-animate>כל מה שצריך לדעת על BLUNIS</p>
+
+    <div class="card" data-animate>
+      <div class="info-subsection">
+        <h3 class="info-subtitle">שיטת עבודה</h3>
+        <p class="info-text">
+          הבוט מתממשק לחברת חשבוניות שלכם, ואתם יכולים לעבוד במקביל גם בחברת החשבוניות וגם בבוט.
+        </p>
+        <p class="info-text" style="font-weight: 600; color: var(--text); margin-top: 24px;">
+          הפונקציות שהבוט יודע לעשות:
+        </p>
+        <ul class="functions-list" id="functionsList">
+          <!-- Loaded from JSON -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" data-animate>
+      <div class="info-subsection">
+        <h3 class="info-subtitle">אבטחת מידע</h3>
+        <p class="info-text">
+          אנו מייחסים חשיבות רבה לשמירה על פרטיות ואבטחת המידע של לקוחותינו.
+        </p>
+        <p class="info-text">
+          רוב המידע החשבונאי (חשבוניות, קבלות, פרטי עסקאות וכדומה) נשמר ומנוהל ישירות בשרתי חברת החשבוניות עמה אתם עובדים. לפיכך, אבטחת המידע העיקרית מתבצעת תחת אחריותם, בהתאם לתקני האבטחה המחמירים הנהוגים אצלם.
+        </p>
+        <p class="info-text">
+          המידע שכן נשמר אצלנו (כגון פרטי התחברות, הגדרות שימוש בבוט ונתונים בסיסיים לצורך התאמה אישית) מאובטח באמצעות אמצעים מתקדמים, תוך שימוש בפרוטוקולי הצפנה, גישה מוגבלת והרשאות מוקפדות — כך שתוכלו להיות בטוחים שהמידע שלכם מוגן היטב וללא חשש.
+        </p>
+        <p class="info-text">
+          אנחנו ממשיכים לפעול באופן שוטף כדי לעמוד בסטנדרטים הגבוהים ביותר של אבטחת מידע ושמירה על פרטיות.
+        </p>
+      </div>
+    </div>
+
+    <div class="card" data-animate>
+      <div class="info-subsection">
+        <h3 class="info-subtitle">עם איזה חברות אנו עובדים</h3>
+        <p class="info-text">
+          אנו עובדים עם 4 חברות מרכזיות:
+        </p>
+        <ul class="companies-list">
+          <li>קארדקום</li>
+          <li>SUMIT</li>
+          <li>חשבונית ירוקה</li>
+          <li>invoice4u</li>
+        </ul>
+        <p class="info-text">
+          על מנת לקבל את כל הפונקציות האפשריות של הבוט, אנו ממליצים לעבור לחברת קארדקום שאיתה אנו עובדים בכל המישורים.
+        </p>
+        <p class="info-text">
+          הפונקציות הבסיסיות עובדות בארבעת החברות הנ"ל.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact Section ===== -->
+  <section class="container" id="contact">
+    <h2 class="section-title" data-animate>צור קשר</h2>
+    <p class="section-sub" data-animate>על כל שאלה או בעיה מוזמנים לפנות</p>
+
+    <div class="contact-card" data-animate>
+      <h2>אביאל שרגא</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span>📧</span>
+          <a href="mailto:aviel@avielpc.com">aviel@avielpc.com</a>
+        </div>
+        <div class="contact-item">
+          <span>📱</span>
+          <a href="tel:0522780677">052-2780677</a>
+        </div>
+        <div class="contact-item">
+          <span>💬</span>
+          <a href="https://wa.me/972522780677" target="_blank">וואטסאפ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div>© <span id="year"></span> BLUNIS. כל הזכויות שמורות.</div>
+    </div>
+  </footer>
+
+  <!-- ===== Accessibility Modal ===== -->
+  <div class="modal" id="accessibilityModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">×</button>
+      <h2>הצהרת נגישות</h2>
+      
+      <h3>מבוא</h3>
+      <p>
+        אנו רואים חשיבות רבה במתן שירות שוויוני לכלל הגולשים ובשיפור השירות הניתן ללקוחות עם מוגבלות. לשם כך, אנו משקיעים משאבים ומאמצים בהנגשת האתר, במטרה להקל על השימוש בו ולהפוך אותו לזמין ונוח עבור אנשים עם מוגבלויות.
+      </p>
+
+      <h3>סטטוס האתר</h3>
+      <p>
+        אתר אינטרנט זה נמצא בימים אלו בתהליכי הקמה, פיתוח והרצה. במסגרת תהליך זה, אנו פועלים להטמעת דרישות הנגישות בהתאם להוראות תקן ישראלי 5568 ("קווים מנחים לנגישות תכנים באינטרנט") ברמה AA, ובהתאם להנחיות מסמך WCAG 2.0 הבינלאומי.
+      </p>
+
+      <h3>התאמות הנגישות באתר</h3>
+      <p>
+        באתר מבוצעות ההתאמות הבאות (חלקן בתהליך הטמעה):
+      </p>
+      <ul class="functions-list">
+        <li>האתר מותאם לניווט באמצעות מקלדת.</li>
+        <li>האתר תומך בשימוש בטכנולוגיות מסייעות (כגון קוראי מסך).</li>
+        <li>התכנים באתר כתובים בשפה ברורה וקריאה.</li>
+        <li>האתר מותאם לתצוגה בדפדפנים הנפוצים ולשימוש בטלפון הסלולרי.</li>
+      </ul>
+
+      <h3>סייג לנגישות ופניות בנושא</h3>
+      <p>
+        כאמור, האתר נמצא בתהליכי בנייה והרצה. ייתכן שחלקים מסוימים באתר טרם הונגשו במלואם או שיימצאו בהם ליקויים זמניים תוך כדי העדכון והבנייה. אם נתקלתם בבעיה או שיש לכם הערה בנושא נגישות, נשמח מאוד שתעדכנו אותנו כדי שנוכל לתקן ולשפר.
+      </p>
+
+      <h3>פרטי רכז הנגישות ודרכי התקשרות</h3>
+      <p>
+        לכל שאלה, בקשה או דיווח על בעיה, ניתן לפנות ישירות לאביאל:
+      </p>
+      <ul class="functions-list">
+        <li>שם: אביאל שרגא</li>
+        <li>טלפון: 052-2780677</li>
+        <li>ניתן לפנות גם בהודעת וואטסאפ למספר זה.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Load videos from JSON
+    fetch('source/videoYoutube.json')
+      .then(res => res.json())
+      .then(data => {
+        const introVideo = data.videos.find(v => v.id === 'intro');
+        const detailedVideo = data.videos.find(v => v.id === 'detailed');
+        
+        if (introVideo && introVideo.youtubeId) {
+          document.getElementById('introVideoWrapper').innerHTML = 
+            `<iframe src="https://www.youtube.com/embed/${introVideo.youtubeId}" allowfullscreen></iframe>`;
+        }
+        
+        if (detailedVideo && detailedVideo.youtubeId) {
+          document.getElementById('detailedVideoWrapper').innerHTML = 
+            `<iframe src="https://www.youtube.com/embed/${detailedVideo.youtubeId}" allowfullscreen></iframe>`;
+        }
+      })
+      .catch(err => console.error('Error loading videos:', err));
+
+    // Load bot functions from JSON
+    fetch('source/botFunctions.json')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('functionsList');
+        data.functions.forEach(func => {
+          const li = document.createElement('li');
+          li.textContent = func.title;
+          list.appendChild(li);
+        });
+      })
+      .catch(err => console.error('Error loading functions:', err));
+
+    // Accessibility modal
+    const modal = document.getElementById('accessibilityModal');
+    const modalLink = document.getElementById('accessibilityLink');
+    const modalClose = document.getElementById('modalClose');
+
+    modalLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.classList.add('active');
+    });
+
+    modalClose.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
