@@ -307,6 +307,92 @@
         padding: 6px 10px;
       }
     }
+
+    /* ===== Accessibility Modal ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: color-mix(in oklab, #000 60%, transparent);
+      backdrop-filter: blur(4px);
+    }
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid color-mix(in oklab, var(--text) 20%, transparent);
+      background: var(--surface-2);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all .2s ease;
+    }
+    .modal-close:hover {
+      background: var(--brand);
+      color: #fff;
+    }
+    .modal-content h2 {
+      font-size: clamp(22px, 3vw, 28px);
+      margin-bottom: 24px;
+      color: var(--brand);
+    }
+    .modal-content h3 {
+      font-size: clamp(18px, 2.5vw, 22px);
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .modal-content p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .functions-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    .functions-list li {
+      padding: 12px 0;
+      padding-right: 30px;
+      position: relative;
+      color: var(--text);
+      font-size: 1.05rem;
+    }
+    .functions-list li:before {
+      content: "✓";
+      position: absolute;
+      right: 0;
+      color: var(--ok);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
@@ -327,7 +413,7 @@
         <a href="reviews.html" class="nav-link">לקוחות ממליצים</a>
         <a href="index.html#contact" class="nav-link">צור קשר</a>
         <a href="jobs.html" class="nav-link">דרושים</a>
-        <a href="index.html#" class="accessibility-link" id="accessibilityLink">הצהרת נגישות</a>
+        <a href="#" class="accessibility-link" id="accessibilityLink">הצהרת נגישות</a>
       </nav>
       <div class="actions">
         <button id="menuToggle" class="menu-toggle" aria-label="תפריט">
@@ -367,6 +453,49 @@
       <div>© <span id="year"></span> BLUNIS. כל הזכויות שמורות.</div>
     </div>
   </footer>
+
+  <div class="modal" id="accessibilityModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">×</button>
+      <h2>הצהרת נגישות</h2>
+      
+      <h3>מבוא</h3>
+      <p>
+        אנו רואים חשיבות רבה במתן שירות שוויוני לכלל הגולשים ובשיפור השירות הניתן ללקוחות עם מוגבלות. לשם כך, אנו משקיעים משאבים ומאמצים בהנגשת האתר, במטרה להקל על השימוש בו ולהפוך אותו לזמין ונוח עבור אנשים עם מוגבלויות.
+      </p>
+
+      <h3>סטטוס האתר</h3>
+      <p>
+        אתר אינטרנט זה נמצא בימים אלו בתהליכי הקמה, פיתוח והרצה. במסגרת תהליך זה, אנו פועלים להטמעת דרישות הנגישות בהתאם להוראות תקן ישראלי 5568 ("קווים מנחים לנגישות תכנים באינטרנט") ברמה AA, ובהתאם להנחיות מסמך WCAG 2.0 הבינלאומי.
+      </p>
+
+      <h3>התאמות הנגישות באתר</h3>
+      <p>
+        באתר מבוצעות ההתאמות הבאות (חלקן בתהליך הטמעה):
+      </p>
+      <ul class="functions-list">
+        <li>האתר מותאם לניווט באמצעות מקלדת.</li>
+        <li>האתר תומך בשימוש בטכנולוגיות מסייעות (כגון קוראי מסך).</li>
+        <li>התכנים באתר כתובים בשפה ברורה וקריאה.</li>
+        <li>האתר מותאם לתצוגה בדפדפנים הנפוצים ולשימוש בטלפון הסלולרי.</li>
+      </ul>
+
+      <h3>סייג לנגישות ופניות בנושא</h3>
+      <p>
+        כאמור, האתר נמצא בתהליכי בנייה והרצה. ייתכן שחלקים מסוימים באתר טרם הונגשו במלואם או שיימצאו בהם ליקויים זמניים תוך כדי העדכון והבנייה. אם נתקלתם בבעיה או שיש לכם הערה בנושא נגישות, נשמח מאוד שתעדכנו אותנו כדי שנוכל לתקן ולשפר.
+      </p>
+
+      <h3>פרטי רכז הנגישות ודרכי התקשרות</h3>
+      <p>
+        לכל שאלה, בקשה או דיווח על בעיה, ניתן לפנות ישירות לאביאל:
+      </p>
+      <ul class="functions-list">
+        <li>שם: אביאל שרגא</li>
+        <li>טלפון: 052-2780677</li>
+        <li>ניתן לפנות גם בהודעת וואטסאפ למספר זה.</li>
+      </ul>
+    </div>
+  </div>
 
   <script src="app.js"></script>
   <script>
@@ -436,6 +565,32 @@
         `;
 
         grid.appendChild(card);
+      });
+    }
+
+    // Accessibility modal
+    const modal = document.getElementById('accessibilityModal');
+    const modalLink = document.getElementById('accessibilityLink');
+    const modalClose = document.getElementById('modalClose');
+
+    if (modal && modalLink) {
+      modalLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+      });
+    }
+
+    if (modalClose) {
+      modalClose.addEventListener('click', () => {
+        modal.classList.remove('active');
+      });
+    }
+
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
       });
     }
   </script>
