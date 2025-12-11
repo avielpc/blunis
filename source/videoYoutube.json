@@ -3,7 +3,7 @@
     {
       "id": "intro",
       "title": "הכר את המערכת",
-      "youtubeId": "https://youtube.com/embed/87EWKwC5fjM?si=_llkvlL4bQODpdOy",
+      "youtubeId": "87EWKwC5fjM",
       "description": "סרטון היכרות עם המערכת"
     },
     {
@@ -14,5 +14,6 @@
     }
   ]
 }
+
 
 
