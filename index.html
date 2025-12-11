@@ -171,11 +171,6 @@
       box-shadow: var(--shadow);
       background: var(--card);
     }
-     .video-wrapper.shorts {
-      padding-bottom: 177.78%;
-      max-width: 400px;
-      margin: 0 auto;
-    }
     .video-wrapper iframe {
       position: absolute;
       top: 0;
@@ -597,20 +592,12 @@
         const detailedVideo = data.videos.find(v => v.id === 'detailed');
         
         if (introVideo && introVideo.youtubeId) {
-         const wrapper = document.getElementById('introVideoWrapper');
-          if (introVideo.isShorts) {
-            wrapper.classList.add('shorts');
-          }
-          wrapper.innerHTML = 
+         document.getElementById('introVideoWrapper').innerHTML = 
             `<iframe src="https://www.youtube.com/embed/${introVideo.youtubeId}" allowfullscreen></iframe>`;
         }
         
         if (detailedVideo && detailedVideo.youtubeId) {
-          const wrapper = document.getElementById('detailedVideoWrapper');
-          if (detailedVideo.isShorts) {
-            wrapper.classList.add('shorts');
-          }
-          wrapper.innerHTML = 
+          document.getElementById('detailedVideoWrapper').innerHTML = 
             `<iframe src="https://www.youtube.com/embed/${detailedVideo.youtubeId}" allowfullscreen></iframe>`;
         }
       })
