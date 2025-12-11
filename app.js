@@ -54,19 +54,32 @@ function initNavigation() {
   // Smooth scroll and active state
   navLinks.forEach(link => {
     link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute("href").substring(1);
-      const targetElement = document.getElementById(targetId);
+      const href = link.getAttribute("href");
       
-      if (targetElement) {
-        const headerOffset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      // If it's a hash link on the same page, handle smooth scroll
+      if (href.startsWith("#")) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          const headerOffset = 80;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      } else if (href.includes("#")) {
+        // Link to another page with hash - let it navigate normally
+        // Close mobile menu
+        if (navMenu.classList.contains("active")) {
+          navMenu.classList.remove("active");
+          menuToggle.classList.remove("active");
+        }
+        return; // Let browser handle navigation
       }
 
       // Close mobile menu

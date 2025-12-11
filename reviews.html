@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>לקוחות ממליצים - BLUNIS</title>
+  <meta name="description" content="המלצות לקוחות על BLUNIS - בוט חשבוניות חכם" />
+  <link rel="icon" type="image/x-icon" href="logo/logo.ico" />
+  <link rel="icon" type="image/png" href="logo/logo.png" />
+  <link rel="apple-touch-icon" href="logo/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       Design System
+       ========================= */
+    :root {
+      --bg: #0f1220;
+      --surface: #151933;
+      --surface-2: #1b2040;
+      --text: #e9ebff;
+      --muted: #bac2ff;
+      --brand: #6c8cff;
+      --brand-2: #86e3ff;
+      --accent: #a78bfa;
+      --card: #0f1329;
+      --ok: #22c55e;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    :root.light {
+      --bg: #f6f8ff;
+      --surface: #ffffff;
+      --surface-2: #eef2ff;
+      --text: #101225;
+      --muted: #3c4270;
+      --brand: #3b5bff;
+      --brand-2: #06b6d4;
+      --accent: #6d28d9;
+      --card: #ffffff;
+      --shadow: 0 10px 25px rgba(23,35,80,.12);
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      font-family: "Heebo", system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans Hebrew", sans-serif;
+      background:
+        radial-gradient(1200px 800px at 80% -10%, color-mix(in oklab, var(--brand-2) 10%, transparent), transparent 60%),
+        radial-gradient(900px 600px at -10% 20%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      scroll-behavior: smooth;
+    }
+
+    a { color: inherit; text-decoration: none }
+    img { max-width: 100%; display: block; border-radius: var(--radius) }
+    .container { width: min(1200px, 92vw); margin: 0 auto }
+
+    /* ===== Header ===== */
+    header.navbar {
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--surface) 92%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0 }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; letter-spacing: .3px }
+    .brand-logo {
+      width: 40px; height: 40px; border-radius: 10px;
+      object-fit: contain; display: block; box-shadow: var(--shadow);
+    }
+
+    .nav-menu {
+      display: flex; align-items: center; gap: 8px; flex: 1; justify-content: center;
+    }
+    .nav-link {
+      padding: 10px 18px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+      color: var(--text); transition: all .2s ease; white-space: nowrap;
+      border: 1px solid transparent;
+    }
+    .nav-link:hover {
+      background: color-mix(in oklab, var(--surface-2) 80%, transparent);
+      color: var(--brand);
+      transform: translateY(-1px);
+    }
+    .nav-link.active {
+      background: color-mix(in oklab, var(--brand) 15%, transparent);
+      color: var(--brand);
+      border-color: color-mix(in oklab, var(--brand) 30%, transparent);
+    }
+
+    .accessibility-link {
+      padding: 8px 14px; border-radius: 8px; font-weight: 500; font-size: 0.85rem;
+      color: var(--muted); transition: all .2s ease;
+      border: 1px solid color-mix(in oklab, var(--text) 8%, transparent);
+    }
+    .accessibility-link:hover {
+      background: color-mix(in oklab, var(--surface-2) 80%, transparent);
+      color: var(--text);
+    }
+
+    .actions { display: flex; align-items: center; gap: 10px }
+    .menu-toggle {
+      display: none;
+      width: 42px; height: 42px; border-radius: 12px; cursor: pointer;
+      border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      background: var(--surface); align-items: center; justify-content: center;
+      flex-direction: column; gap: 5px;
+    }
+    .menu-toggle span {
+      width: 20px; height: 2px; background: var(--text); border-radius: 2px;
+      transition: all .3s ease;
+    }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    .btn, button.btn {
+      padding: 12px 24px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      background: linear-gradient(180deg, color-mix(in oklab, var(--surface) 85%, transparent), var(--surface-2));
+      color: var(--text); font-weight: 700; box-shadow: var(--shadow);
+      transition: transform .12s ease, box-shadow .12s ease; cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn:hover { transform: translateY(-1px) }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--accent)); border: none; color: #fff }
+
+    .icon-btn {
+      display: grid; place-items: center;
+      width: 42px; height: 42px; border-radius: 12px; cursor: pointer;
+      border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      background: var(--surface);
+    }
+
+    /* ===== Hero ===== */
+    .hero { padding: 90px 0 70px; text-align: center }
+    .title-xl { font-size: clamp(28px, 5vw, 54px); line-height: 1.1; font-weight: 800; margin: 0 0 14px }
+    .lead { color: var(--muted); font-size: clamp(16px, 2.2vw, 20px); margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: center; margin-top: 32px }
+
+    /* ===== Sections ===== */
+    section { padding: 80px 0 }
+    .section-title { font-size: clamp(22px, 4vw, 36px); font-weight: 800; text-align: center; margin: 0 0 10px }
+    .section-sub { text-align: center; color: var(--muted); margin-bottom: 48px; font-size: 1.1rem }
+
+    /* ===== Reviews Grid ===== */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .review-card {
+      background: linear-gradient(180deg, color-mix(in oklab,var(--card) 90%, transparent), var(--surface-2));
+      border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: all .3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,.4);
+      border-color: var(--brand);
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .review-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--brand);
+    }
+
+    .review-info {
+      flex: 1;
+    }
+
+    .review-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .review-stars {
+      color: #ffc107;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+    }
+
+    .review-video {
+      margin-top: 16px;
+    }
+
+    .review-video-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--brand);
+      font-weight: 600;
+      transition: all .2s ease;
+    }
+
+    .review-video-link:hover {
+      color: var(--accent);
+      transform: translateX(-3px);
+    }
+
+    /* ===== Animations ===== */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: .6s ease;
+    }
+    [data-animate].in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 960px) {
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-menu {
+        position: fixed; top: 70px; right: 0; left: 0;
+        background: var(--surface); border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+        flex-direction: column; padding: 20px; gap: 8px; box-shadow: var(--shadow);
+        transform: translateY(-100%); opacity: 0; pointer-events: none;
+        transition: all .3s ease; z-index: 30;
+      }
+      .nav-menu.active {
+        transform: translateY(0); opacity: 1; pointer-events: all;
+      }
+      .nav-link {
+        width: 100%; text-align: center; padding: 14px 18px;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      .accessibility-link {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="brand">
+        <a href="index.html">
+          <img src="logo/logo.png" alt="BLUNIS Logo" class="brand-logo" />
+          BLUNIS
+        </a>
+      </div>
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html#how-it-works" class="nav-link">איך זה עובד?</a>
+        <a href="index.html#info" class="nav-link">מידע</a>
+        <a href="pricing.html" class="nav-link">מחירון</a>
+        <a href="join.html" class="nav-link">איך מצטרפים</a>
+        <a href="reviews.html" class="nav-link active">לקוחות ממליצים</a>
+        <a href="index.html#contact" class="nav-link">צור קשר</a>
+        <a href="jobs.html" class="nav-link">דרושים</a>
+        <a href="index.html#" class="accessibility-link" id="accessibilityLink">הצהרת נגישות</a>
+      </nav>
+      <div class="actions">
+        <button id="menuToggle" class="menu-toggle" aria-label="תפריט">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <button id="themeToggle" class="icon-btn" aria-label="החלפת מצב בהיר/כהה">🌓</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="home">
+    <div class="container">
+      <h1 class="title-xl" data-animate>לקוחות ממליצים</h1>
+      <p class="lead" data-animate>
+        מה הלקוחות שלנו אומרים על BLUNIS - בוט חשבוניות חכם
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Reviews Section ===== -->
+  <section class="container" id="reviews">
+    <div class="reviews-grid" id="reviewsGrid">
+      <!-- Loaded from JSON -->
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div>© <span id="year"></span> BLUNIS. כל הזכויות שמורות.</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Load reviews from JSON
+    fetch('source/reviews.json')
+      .then(res => res.json())
+      .then(data => {
+        const grid = document.getElementById('reviewsGrid');
+        
+        data.reviews.forEach(review => {
+          const card = document.createElement('div');
+          card.className = 'review-card';
+          card.setAttribute('data-animate', '');
+          
+          // Generate stars
+          const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+          
+          // Image or placeholder
+          const imageSrc = review.image || 'logo/logo.png';
+          const imageAlt = review.customerName;
+          
+          // Video link if available
+          let videoHtml = '';
+          if (review.youtubeLink) {
+            videoHtml = `
+              <div class="review-video">
+                <a href="${review.youtubeLink}" target="_blank" class="review-video-link">
+                  <span>▶</span>
+                  <span>צפה בסרטון המלצה</span>
+                </a>
+              </div>
+            `;
+          }
+          
+          card.innerHTML = `
+            <div class="review-header">
+              <img src="${imageSrc}" alt="${imageAlt}" class="review-image" onerror="this.src='logo/logo.png'" />
+              <div class="review-info">
+                <div class="review-name">${review.customerName}</div>
+                <div class="review-stars">${stars}</div>
+              </div>
+            </div>
+            <div class="review-text">${review.text}</div>
+            ${videoHtml}
+          `;
+          
+          grid.appendChild(card);
+        });
+        
+        // Trigger animation
+        setTimeout(() => {
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                observer.unobserve(e.target);
+              }
+            });
+          }, { threshold: 0.1 });
+          
+          document.querySelectorAll('.review-card[data-animate]').forEach(el => {
+            observer.observe(el);
+          });
+        }, 100);
+      })
+      .catch(err => console.error('Error loading reviews:', err));
+  </script>
+</body>
+</html>
+

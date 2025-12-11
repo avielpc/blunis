@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>מדריך שימוש בבוט BLUNIS</title>
-  <meta name="description" content="מדריך מפורט לשימוש בבוט BLUNIS - יצירת חשבוניות, קבלת דוחות, סיכומי הכנסות ועוד" />
+  <title>BLUNIS - בוט חשבוניות חכם</title>
+  <meta name="description" content="BLUNIS - בוט חכם לניהול חשבוניות, דוחות וחשבונאות. עבודה עם קארדקום, SUMIT, חשבונית ירוקה ו-invoice4u" />
   <link rel="icon" type="image/x-icon" href="logo/logo.ico" />
   <link rel="icon" type="image/png" href="logo/logo.png" />
   <link rel="apple-touch-icon" href="logo/logo.png" />
@@ -92,6 +92,16 @@
       border-color: color-mix(in oklab, var(--brand) 30%, transparent);
     }
 
+    .accessibility-link {
+      padding: 8px 14px; border-radius: 8px; font-weight: 500; font-size: 0.85rem;
+      color: var(--muted); transition: all .2s ease;
+      border: 1px solid color-mix(in oklab, var(--text) 8%, transparent);
+    }
+    .accessibility-link:hover {
+      background: color-mix(in oklab, var(--surface-2) 80%, transparent);
+      color: var(--text);
+    }
+
     .actions { display: flex; align-items: center; gap: 10px }
     .menu-toggle {
       display: none;
@@ -139,63 +149,93 @@
       background: linear-gradient(180deg, color-mix(in oklab,var(--card) 90%, transparent), var(--surface-2));
       border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
       border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow);
+      margin-bottom: 40px;
     }
 
-    /* ===== Example Sections ===== */
-    .example-section { margin-bottom: 60px }
-    .example-title {
+    /* ===== Video Section ===== */
+    .video-section {
+      margin-bottom: 50px;
+    }
+    .video-title {
       font-size: clamp(20px, 3vw, 28px);
       font-weight: 800;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
       color: var(--brand);
     }
-    .example-description {
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--card);
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ===== Info Section ===== */
+    .info-subsection {
+      margin-bottom: 50px;
+    }
+    .info-subtitle {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--brand);
+    }
+    .info-text {
       color: var(--muted);
-      margin-bottom: 24px;
+      line-height: 1.8;
+      margin-bottom: 20px;
       font-size: 1.05rem;
     }
-
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-top: 24px;
+    .functions-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
     }
-
-    .option-card {
-      background: var(--card);
-      border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
-    }
-
-    .option-title {
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 12px;
+    .functions-list li {
+      padding: 12px 0;
+      padding-right: 30px;
+      position: relative;
       color: var(--text);
+      font-size: 1.05rem;
+    }
+    .functions-list li:before {
+      content: "✓";
+      position: absolute;
+      right: 0;
+      color: var(--ok);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    .companies-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    .companies-list li {
+      padding: 8px 0;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .companies-list li:before {
+      content: "•";
+      margin-left: 10px;
+      color: var(--brand);
+      font-size: 1.5rem;
     }
 
-    .example-image {
-      width: 100%;
-      border-radius: 12px;
-      margin-top: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,.15);
-      border: 1px solid color-mix(in oklab, var(--text) 8%, transparent);
-    }
-
-    .single-example {
-      margin-top: 32px;
-    }
-
-    .single-example .example-image {
-      max-width: 800px;
-      margin: 24px auto 0;
-    }
-
-    /* ===== Bot Link Section ===== */
-    .bot-link-section {
+    /* ===== Contact Section ===== */
+    .contact-card {
       background: linear-gradient(135deg, var(--brand), var(--accent));
       border-radius: var(--radius);
       padding: 50px 30px;
@@ -203,42 +243,97 @@
       color: #fff;
       margin: 60px 0;
     }
-
-    .bot-link-section h2 {
+    .contact-card h2 {
       font-size: clamp(24px, 4vw, 36px);
-      margin-bottom: 16px;
+      margin-bottom: 24px;
       color: #fff;
     }
-
-    .bot-link-section p {
-      font-size: 1.2rem;
-      margin-bottom: 32px;
-      opacity: 0.95;
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      margin-top: 24px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+    }
+    .contact-item a {
+      color: #fff;
+      text-decoration: underline;
+      transition: opacity .2s ease;
+    }
+    .contact-item a:hover {
+      opacity: 0.8;
     }
 
-    .bot-link-btn {
-      display: inline-block;
-      padding: 16px 40px;
-      background: #fff;
+    /* ===== Accessibility Modal ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: color-mix(in oklab, #000 60%, transparent);
+      backdrop-filter: blur(4px);
+    }
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid color-mix(in oklab, var(--text) 20%, transparent);
+      background: var(--surface-2);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all .2s ease;
+    }
+    .modal-close:hover {
+      background: var(--brand);
+      color: #fff;
+    }
+    .modal-content h2 {
+      font-size: clamp(22px, 3vw, 28px);
+      margin-bottom: 24px;
       color: var(--brand);
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 1.2rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,.3);
-      transition: transform .2s ease, box-shadow .2s ease;
     }
-
-    .bot-link-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0,0,0,.4);
+    .modal-content h3 {
+      font-size: clamp(18px, 2.5vw, 22px);
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: var(--text);
     }
-
-    /* ===== Footer ===== */
-    footer {
-      padding: 30px 0;
+    .modal-content p {
       color: var(--muted);
-      border-top: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-      text-align: center;
+      line-height: 1.8;
+      margin-bottom: 16px;
     }
 
     /* ===== Animations ===== */
@@ -253,9 +348,6 @@
     }
 
     @media (max-width: 960px) {
-      .options-grid {
-        grid-template-columns: 1fr;
-      }
       .nav-menu {
         position: fixed; top: 70px; right: 0; left: 0;
         background: var(--surface); border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
@@ -272,6 +364,10 @@
       .menu-toggle {
         display: flex;
       }
+      .accessibility-link {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+      }
     }
   </style>
 </head>
@@ -284,13 +380,14 @@
         BLUNIS
       </div>
       <nav class="nav-menu" id="navMenu">
-        <a href="#home" class="nav-link active">בית</a>
-        <a href="#invoices" class="nav-link">הוצאת חשבוניות</a>
-        <a href="#monthly-report" class="nav-link">דוח חודשיים</a>
-        <a href="#income-summary" class="nav-link">סיכום הכנסות</a>
-        <a href="#voice-commands" class="nav-link">פקודות קוליות</a>
-        <a href="#get-started" class="nav-link">התחלה</a>
-        <a href="https://did.li/HxiDN" target="_blank" class="nav-link">הצטרף בקליק לשירות</a>
+        <a href="#how-it-works" class="nav-link">איך זה עובד?</a>
+        <a href="#info" class="nav-link">מידע</a>
+        <a href="pricing.html" class="nav-link">מחירון</a>
+        <a href="join.html" class="nav-link">איך מצטרפים</a>
+        <a href="reviews.html" class="nav-link">לקוחות ממליצים</a>
+        <a href="#contact" class="nav-link">צור קשר</a>
+        <a href="jobs.html" class="nav-link">דרושים</a>
+        <a href="#" class="accessibility-link" id="accessibilityLink">הצהרת נגישות</a>
       </nav>
       <div class="actions">
         <button id="menuToggle" class="menu-toggle" aria-label="תפריט">
@@ -306,144 +403,132 @@
   <!-- ===== Hero ===== -->
   <section class="hero" id="home">
     <div class="container">
-      <h1 class="title-xl" data-animate>מדריך שימוש בבוט BLUNIS</h1>
+      <h1 class="title-xl" data-animate>BLUNIS - בוט חשבוניות חכם</h1>
       <p class="lead" data-animate>
-        למד איך להשתמש בבוט שלנו כדי לנהל את החשבוניות, לקבל דוחות ולשלוט בכספים שלך בקלות ובמהירות.
+        בוט חכם לניהול חשבוניות, דוחות וחשבונאות. עבודה פשוטה ונוחה עם כל חברות החשבוניות המובילות.
       </p>
       <div class="cta-row" data-animate>
-        <a href="https://did.li/HxiDN" target="_blank" class="btn primary">הצטרף בקליק לשירות</a>
-        <a href="https://wa.me/14422780677" target="_blank" class="btn primary">התחל להשתמש בבוט</a>
-        <a href="#invoices" class="btn primary" id="howToUseBtn">איך משתמשים?</a>
+        <a href="join.html" class="btn primary">הצטרף עכשיו</a>
+        <a href="https://wa.me/972522780677" target="_blank" class="btn primary">התחל להשתמש בבוט</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== Bot Link Section ===== -->
-  <section class="container" id="get-started">
-    <div class="bot-link-section" data-animate>
-      <h2>מוכן להתחיל?</h2>
-      <p>לחץ על הקישור כדי לפתוח את הבוט ב-WhatsApp</p>
-      <a href="https://wa.me/14422780677" target="_blank" class="bot-link-btn">פתח את הבוט עכשיו</a>
-    </div>
-  </section>
+  <!-- ===== How It Works ===== -->
+  <section class="container" id="how-it-works">
+    <h2 class="section-title" data-animate>איך זה עובד?</h2>
+    <p class="section-sub" data-animate>למד איך להשתמש בבוט שלנו בקלות ובמהירות</p>
 
-  <!-- ===== Example 1: Invoice Generation ===== -->
-  <section class="container" id="invoices">
-    <div class="card example-section" data-animate>
-      <h2 class="example-title">דוגמא 1: הוצאת חשבוניות</h2>
-      <p class="example-description">
-        הבוט מאפשר לך ליצור חשבוניות במגוון דרכים. בחר את השיטה המתאימה לך ביותר.
-      </p>
-
-      <div class="options-grid">
-        <div class="option-card">
-          <div class="option-title">אפשרות 1: יצירת חשבונית רגילה</div>
-          <p class="muted" style="font-size: 0.95rem; margin-bottom: 0;">
-            יצירת חשבונית בצורה פשוטה ומהירה עם כל הפרטים הנדרשים.
-          </p>
-          <img src="images/a1.jpeg" alt="יצירת חשבונית רגילה" class="example-image" />
-        </div>
-
-        <div class="option-card">
-          <div class="option-title">אפשרות 2: יצירת חשבונית עם כל המידע בהתחלה</div>
-          <p class="muted" style="font-size: 0.95rem; margin-bottom: 0;">
-            הזנת כל הפרטים בבת אחת ליצירת חשבונית מהירה ומדויקת.
-          </p>
-          <img src="images/a2.jpeg" alt="יצירת חשבונית עם כל המידע בהתחלה" class="example-image" />
-        </div>
-
-        <div class="option-card">
-          <div class="option-title">אפשרות 3: יצירת חשבונית ושינוי רגע לפני היצירה</div>
-          <p class="muted" style="font-size: 0.95rem; margin-bottom: 0;">
-            אפשרות לערוך ולשנות פרטים לפני יצירת החשבונית הסופית.
-          </p>
-          <img src="images/a3.jpeg" alt="יצירת חשבונית ושינוי רגע לפני היצירה" class="example-image" />
-        </div>
-
-        <div class="option-card">
-          <div class="option-title">אפשרות 4: יצירת חשבונית לפי קבלת כסף בביט</div>
-          <p class="muted" style="font-size: 0.95rem; margin-bottom: 0;">
-            יצירת חשבונית אוטומטית כאשר מתקבל תשלום דרך ביט.
-          </p>
-          <img src="images/a4.jpeg" alt="יצירת חשבונית לפי קבלת כסף בביט" class="example-image" />
+    <div class="card" data-animate>
+      <div class="video-section">
+        <h3 class="video-title" id="introVideoTitle">הכר את המערכת</h3>
+        <div class="video-wrapper" id="introVideoWrapper">
+          <p style="text-align: center; padding: 40px; color: var(--muted);">טוען סרטון...</p>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ===== Example 2: Monthly Report ===== -->
-  <section class="container" id="monthly-report">
-    <div class="card example-section" data-animate>
-      <h2 class="example-title">דוגמא 2: שליחת דוח חודשיים אחרונים של הרו"ח</h2>
-      <p class="example-description">
-        קבל דוח מפורט של החודשיים האחרונים עם כל המידע הנדרש לרואה החשבון שלך.
-      </p>
-      <div class="single-example">
-        <img src="images/b1.jpeg" alt="שליחת דוח חודשיים אחרונים של הרו״ח" class="example-image" />
+    <div class="card" data-animate>
+      <div class="video-section">
+        <h3 class="video-title" id="detailedVideoTitle">הסבר מפורט</h3>
+        <div class="video-wrapper" id="detailedVideoWrapper">
+          <p style="text-align: center; padding: 40px; color: var(--muted);">טוען סרטון...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-animate>
+      <div class="video-section">
+        <h3 class="video-title">דוגמאות שימוש</h3>
+        <p style="color: var(--muted); margin-bottom: 24px; font-size: 1.05rem;">
+          צפה בדוגמאות מפורטות לשימוש בבוט עם תמונות והסברים מפורטים
+        </p>
+        <a href="examples.html" class="btn primary">צפה בדוגמאות</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== Example 3: Income Summary ===== -->
-  <section class="container" id="income-summary">
-    <div class="card example-section" data-animate>
-      <h2 class="example-title">דוגמא 3: סיכום הכנסות לתקופה מסוימת</h2>
-      <p class="example-description">
-        בקש מהבוט סיכום מפורט של ההכנסות שלך לתקופה ספציפית שבוחרת.
-      </p>
-      <div class="single-example">
-        <img src="images/c1.jpeg" alt="סיכום הכנסות לתקופה מסוימת" class="example-image" />
+  <!-- ===== Info Section ===== -->
+  <section class="container" id="info">
+    <h2 class="section-title" data-animate>מידע</h2>
+    <p class="section-sub" data-animate>כל מה שצריך לדעת על BLUNIS</p>
+
+    <div class="card" data-animate>
+      <div class="info-subsection">
+        <h3 class="info-subtitle">שיטת עבודה</h3>
+        <p class="info-text">
+          הבוט מתממשק לחברת חשבוניות שלכם, ואתם יכולים לעבוד במקביל גם בחברת החשבוניות וגם בבוט.
+        </p>
+        <p class="info-text" style="font-weight: 600; color: var(--text); margin-top: 24px;">
+          הפונקציות שהבוט יודע לעשות:
+        </p>
+        <ul class="functions-list" id="functionsList">
+          <!-- Loaded from JSON -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" data-animate>
+      <div class="info-subsection">
+        <h3 class="info-subtitle">אבטחת מידע</h3>
+        <p class="info-text">
+          אנו מייחסים חשיבות רבה לשמירה על פרטיות ואבטחת המידע של לקוחותינו.
+        </p>
+        <p class="info-text">
+          רוב המידע החשבונאי (חשבוניות, קבלות, פרטי עסקאות וכדומה) נשמר ומנוהל ישירות בשרתי חברת החשבוניות עמה אתם עובדים. לפיכך, אבטחת המידע העיקרית מתבצעת תחת אחריותם, בהתאם לתקני האבטחה המחמירים הנהוגים אצלם.
+        </p>
+        <p class="info-text">
+          המידע שכן נשמר אצלנו (כגון פרטי התחברות, הגדרות שימוש בבוט ונתונים בסיסיים לצורך התאמה אישית) מאובטח באמצעות אמצעים מתקדמים, תוך שימוש בפרוטוקולי הצפנה, גישה מוגבלת והרשאות מוקפדות — כך שתוכלו להיות בטוחים שהמידע שלכם מוגן היטב וללא חשש.
+        </p>
+        <p class="info-text">
+          אנחנו ממשיכים לפעול באופן שוטף כדי לעמוד בסטנדרטים הגבוהים ביותר של אבטחת מידע ושמירה על פרטיות.
+        </p>
+      </div>
+    </div>
+
+    <div class="card" data-animate>
+      <div class="info-subsection">
+        <h3 class="info-subtitle">עם איזה חברות אנו עובדים</h3>
+        <p class="info-text">
+          אנו עובדים עם 4 חברות מרכזיות:
+        </p>
+        <ul class="companies-list">
+          <li>קארדקום</li>
+          <li>SUMIT</li>
+          <li>חשבונית ירוקה</li>
+          <li>invoice4u</li>
+        </ul>
+        <p class="info-text">
+          על מנת לקבל את כל הפונקציות האפשריות של הבוט, אנו ממליצים לעבור לחברת קארדקום שאיתה אנו עובדים בכל המישורים.
+        </p>
+        <p class="info-text">
+          הפונקציות הבסיסיות עובדות בארבעת החברות הנ"ל.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ===== Example 4: Voice Commands ===== -->
-  <section class="container" id="voice-commands">
-    <div class="card example-section" data-animate>
-      <h2 class="example-title">דוגמא 4: הבוט יכול לקבל גם פקודה בהקלטה</h2>
-      <p class="example-description">
-        לא צריך להקליד! תוכל לשלוח פקודות לבוט גם באמצעות הקלטת קול - נוח ומהיר יותר.
-      </p>
-      <div class="single-example">
-        <img src="images/d1.jpeg" alt="הבוט יכול לקבל גם פקודה בהקלטה" class="example-image" />
+  <!-- ===== Contact Section ===== -->
+  <section class="container" id="contact">
+    <h2 class="section-title" data-animate>צור קשר</h2>
+    <p class="section-sub" data-animate>על כל שאלה או בעיה מוזמנים לפנות</p>
+
+    <div class="contact-card" data-animate>
+      <h2>אביאל שרגא</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span>📧</span>
+          <a href="mailto:aviel@avielpc.com">aviel@avielpc.com</a>
+        </div>
+        <div class="contact-item">
+          <span>📱</span>
+          <a href="tel:0522780677">052-2780677</a>
+        </div>
+        <div class="contact-item">
+          <span>💬</span>
+          <a href="https://wa.me/972522780677" target="_blank">וואטסאפ</a>
+        </div>
       </div>
-    </div>
-  </section>
-
-  
-  <!-- ===== Example 5: Attach Expense to Bot and File to Accountant ===== -->
-  <section class="container" id="expense-attachment">
-    <div class="card example-section" data-animate>
-      <h2 class="example-title">דוגמא 5: צירוף הוצאה לבוט, ותיוק לרואה חשבון</h2>
-      <p class="example-description">
-        צרף הוצאות לבוט ותייק אותן ישירות לרואה החשבון שלך בצורה מסודרת ונוחה.
-      </p>
-      <div class="single-example">
-        <img src="images/e1.jpeg" alt="צירוף הוצאה לבוט, ותיוק לרואה חשבון" class="example-image" />
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Example 6: Credit Invoice ===== -->
-  <section class="container" id="credit-invoice">
-    <div class="card example-section" data-animate>
-      <h2 class="example-title">דוגמא 6: חשבונית זיכוי לחשבונית שהוצאה במערכת</h2>
-      <p class="example-description">
-        יצירת חשבונית זיכוי לחשבונית שכבר הוצאה במערכת בצורה פשוטה ומהירה.
-      </p>
-      <div class="single-example">
-        <img src="images/f1.jpeg" alt="חשבונית זיכוי לחשבונית שהוצאה במערכת" class="example-image" />
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===== Final CTA ===== -->
-  <section class="container">
-    <div class="bot-link-section" data-animate>
-      <h2>מוכן להתחיל להשתמש בבוט?</h2>
-      <p>לחץ על הקישור כדי לפתוח את הבוט ב-WhatsApp ולהתחיל</p>
-      <a href="https://wa.me/14422780677" target="_blank" class="bot-link-btn">פתח את הבוט עכשיו</a>
     </div>
   </section>
 
@@ -453,8 +538,103 @@
     </div>
   </footer>
 
+  <!-- ===== Accessibility Modal ===== -->
+  <div class="modal" id="accessibilityModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">×</button>
+      <h2>הצהרת נגישות</h2>
+      
+      <h3>מבוא</h3>
+      <p>
+        אנו רואים חשיבות רבה במתן שירות שוויוני לכלל הגולשים ובשיפור השירות הניתן ללקוחות עם מוגבלות. לשם כך, אנו משקיעים משאבים ומאמצים בהנגשת האתר, במטרה להקל על השימוש בו ולהפוך אותו לזמין ונוח עבור אנשים עם מוגבלויות.
+      </p>
+
+      <h3>סטטוס האתר</h3>
+      <p>
+        אתר אינטרנט זה נמצא בימים אלו בתהליכי הקמה, פיתוח והרצה. במסגרת תהליך זה, אנו פועלים להטמעת דרישות הנגישות בהתאם להוראות תקן ישראלי 5568 ("קווים מנחים לנגישות תכנים באינטרנט") ברמה AA, ובהתאם להנחיות מסמך WCAG 2.0 הבינלאומי.
+      </p>
+
+      <h3>התאמות הנגישות באתר</h3>
+      <p>
+        באתר מבוצעות ההתאמות הבאות (חלקן בתהליך הטמעה):
+      </p>
+      <ul class="functions-list">
+        <li>האתר מותאם לניווט באמצעות מקלדת.</li>
+        <li>האתר תומך בשימוש בטכנולוגיות מסייעות (כגון קוראי מסך).</li>
+        <li>התכנים באתר כתובים בשפה ברורה וקריאה.</li>
+        <li>האתר מותאם לתצוגה בדפדפנים הנפוצים ולשימוש בטלפון הסלולרי.</li>
+      </ul>
+
+      <h3>סייג לנגישות ופניות בנושא</h3>
+      <p>
+        כאמור, האתר נמצא בתהליכי בנייה והרצה. ייתכן שחלקים מסוימים באתר טרם הונגשו במלואם או שיימצאו בהם ליקויים זמניים תוך כדי העדכון והבנייה. אם נתקלתם בבעיה או שיש לכם הערה בנושא נגישות, נשמח מאוד שתעדכנו אותנו כדי שנוכל לתקן ולשפר.
+      </p>
+
+      <h3>פרטי רכז הנגישות ודרכי התקשרות</h3>
+      <p>
+        לכל שאלה, בקשה או דיווח על בעיה, ניתן לפנות ישירות לאביאל:
+      </p>
+      <ul class="functions-list">
+        <li>שם: אביאל שרגא</li>
+        <li>טלפון: 052-2780677</li>
+        <li>ניתן לפנות גם בהודעת וואטסאפ למספר זה.</li>
+      </ul>
+    </div>
+  </div>
+
   <script src="app.js"></script>
+  <script>
+    // Load videos from JSON
+    fetch('source/videoYoutube.json')
+      .then(res => res.json())
+      .then(data => {
+        const introVideo = data.videos.find(v => v.id === 'intro');
+        const detailedVideo = data.videos.find(v => v.id === 'detailed');
+        
+        if (introVideo && introVideo.youtubeId) {
+          document.getElementById('introVideoWrapper').innerHTML = 
+            `<iframe src="https://www.youtube.com/embed/${introVideo.youtubeId}" allowfullscreen></iframe>`;
+        }
+        
+        if (detailedVideo && detailedVideo.youtubeId) {
+          document.getElementById('detailedVideoWrapper').innerHTML = 
+            `<iframe src="https://www.youtube.com/embed/${detailedVideo.youtubeId}" allowfullscreen></iframe>`;
+        }
+      })
+      .catch(err => console.error('Error loading videos:', err));
+
+    // Load bot functions from JSON
+    fetch('source/botFunctions.json')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('functionsList');
+        data.functions.forEach(func => {
+          const li = document.createElement('li');
+          li.textContent = func.title;
+          list.appendChild(li);
+        });
+      })
+      .catch(err => console.error('Error loading functions:', err));
+
+    // Accessibility modal
+    const modal = document.getElementById('accessibilityModal');
+    const modalLink = document.getElementById('accessibilityLink');
+    const modalClose = document.getElementById('modalClose');
+
+    modalLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.classList.add('active');
+    });
+
+    modalClose.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
-
-
