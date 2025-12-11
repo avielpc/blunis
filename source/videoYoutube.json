@@ -1,0 +1,17 @@
+{
+  "videos": [
+    {
+      "id": "intro",
+      "title": "הכר את המערכת",
+      "youtubeId": "",
+      "description": "סרטון היכרות עם המערכת"
+    },
+    {
+      "id": "detailed",
+      "title": "הסבר מפורט",
+      "youtubeId": "",
+      "description": "סרטון הסבר מפורט על השימוש במערכת"
+    }
+  ]
+}
+

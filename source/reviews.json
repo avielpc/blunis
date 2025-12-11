@@ -1,0 +1,45 @@
+{
+  "reviews": [
+    {
+      "id": 1,
+      "customerName": "יוסי כהן",
+      "youtubeLink": "",
+      "text": "הבוט חוסך לי המון זמן! יצירת חשבוניות מעולם לא הייתה כל כך קלה.",
+      "rating": 5,
+      "image": "imagesForms/review1.jpg"
+    },
+    {
+      "id": 2,
+      "customerName": "שרה לוי",
+      "youtubeLink": "",
+      "text": "מערכת מצוינת, פשוטה לשימוש ומאוד יעילה. ממליצה בחום!",
+      "rating": 5,
+      "image": "imagesForms/review2.jpg"
+    },
+    {
+      "id": 3,
+      "customerName": "דוד אברהם",
+      "youtubeLink": "",
+      "text": "השירות מעולה והתמיכה מהירה. הבוט עובד מצוין!",
+      "rating": 4,
+      "image": "imagesForms/review3.jpg"
+    },
+    {
+      "id": 4,
+      "customerName": "רחל דוד",
+      "youtubeLink": "",
+      "text": "זה שינה לי את החיים! כל כך נוח לעבוד עם הבוט.",
+      "rating": 5,
+      "image": "imagesForms/review4.jpg"
+    },
+    {
+      "id": 5,
+      "customerName": "משה ישראלי",
+      "youtubeLink": "",
+      "text": "מערכת מקצועית ואמינה. עובדת מצוין עם כל חברות החשבוניות.",
+      "rating": 5,
+      "image": "imagesForms/review5.jpg"
+    }
+  ]
+}
+
