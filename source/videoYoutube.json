@@ -4,7 +4,8 @@
       "id": "intro",
       "title": "הכר את המערכת",
       "youtubeId": "87EWKwC5fjM",
-      "description": "סרטון היכרות עם המערכת"
+      "description": "סרטון היכרות עם המערכת",
+      "isShorts": true
     },
     {
       "id": "detailed",
@@ -14,6 +15,7 @@
     }
   ]
 }
+
 
 
 
